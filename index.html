@@ -12,6 +12,30 @@
         </header>
         <main>
             <div id="menu"></div>
+            <div id="order-summary">
+                <h2 id="summary-title">Your order</h2>
+                <ul id="summary-item-list">
+                    <li class="summary-item">
+                        <h3 class="item-name">ITEM NAME</h3>
+                        <div class="remove-btn-container">
+                            <button class="remove-btn type="button">remove</button>
+                        </div>
+                        <p class="price">$PRICE</p>
+                    </li>
+                    <li class="summary-item">
+                        <h3 class="item-name">ITEM NAME</h3>
+                        <div class="remove-btn-container">
+                            <button class="remove-btn" type="button">remove</button>
+                        </div>
+                        <p class="price">$PRICE</p>
+                    </li>
+                </ul>
+                <div id="summary-total">
+                    <h3>Total price:</h3>
+                    <p class="price">$PRICE</p>
+                </div>
+                <button id="submit-order" class="submit-btn" type="submit">Complete order</button>
+            </div>
         </main>
 	<script src="index.js" type="module"></script>
     </body>
