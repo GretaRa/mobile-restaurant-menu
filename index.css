@@ -87,6 +87,10 @@ main{
     font-weight: 200;
 }
 
+#order-summary{
+    display: none;
+}
+
 #summary-title{
     text-align: center;
 }
