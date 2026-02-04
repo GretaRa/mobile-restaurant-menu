@@ -8,6 +8,7 @@ document.addEventListener('click', function(e){
    if(e.target.classList.contains("add-btn")){
       const id = Number(e.target.dataset.id)
       addToCart(id)
+      
    } else if (e.target.classList.contains("remove-btn")){
       const id = Number(e.target.dataset.id)
       removeItem(id)
@@ -50,7 +51,7 @@ function addToCart (selectedItemId){
 }
 
 function removeItem (selectedItemId){
-  const item = menuArray.find( i => i.id === selectedItemId)
+  const item = shoppingCart.find( i => i.id === selectedItemId)
 
   shoppingCart.splice(shoppingCart.indexOf(item), 1)
 
@@ -73,7 +74,7 @@ function renderShoppingCart (cart) {
       <li class="summary-item">
         <h3 class="item-name">${item.name}</h3>
         <div class="remove-btn-container">
-            <button class="remove-btn type="button">remove</button>
+            <button class="remove-btn type="button" data-id="${item.id}">remove</button>
         </div>
         <p class="price">$${item.price}</p>
     </li>
