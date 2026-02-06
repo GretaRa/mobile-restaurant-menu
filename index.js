@@ -1,18 +1,27 @@
 import { menuArray } from "./data.js";
 
 const menuEl = document.getElementById('menu')
+const paymentModalEl = document.getElementById("payment-modal")
+const paymentForm = document.getElementById("payment-form")
 
 let shoppingCart = []
 
 document.addEventListener('click', function(e){
-   if(e.target.classList.contains("add-btn")){
-      const id = Number(e.target.dataset.id)
-      addToCart(id)
-      
-   } else if (e.target.classList.contains("remove-btn")){
-      const id = Number(e.target.dataset.id)
-      removeItem(id)
-   }
+  if(e.target.classList.contains("add-btn")){
+    const id = Number(e.target.dataset.id)
+    addToCart(id)
+    
+  } 
+  if (e.target.classList.contains("remove-btn")){
+    const id = Number(e.target.dataset.id)
+    removeItem(id)
+  }
+  if(e.target.classList.contains("checkout")){
+    paymentModalEl.classList.remove("hidden")
+  }
+  if(e.target.classList.contains("pay")){
+    paymentForm.checkValidity() ? paymentModalEl.classList.add("hidden") : paymentForm.reportValidity()
+  }
 })
 
 function createMenu (){
@@ -92,21 +101,47 @@ function renderShoppingCart (cart) {
         <h3>Total price:</h3>
         <p class="price">$${cartTotal}</p>
     </div>
-    <button id="submit-order" class="submit-btn" type="submit">Complete order</button>
+    <button id="submit-order" class="submit-btn checkout" type="submit">Complete order</button>
   `
 }
 
-// Restrict card form input
+// Validate card form input
 
-function restrictInputTo(inputSelector, regex) {
+function setupInputValidation(inputSelector, restrictRegex, pattern, message) {
   const input = document.querySelector(inputSelector);
   if (!input) return;
-  
+
+  // Restrict typing
   input.addEventListener("input", (e) => {
-    e.target.value = e.target.value.replace(regex, "");
+    e.target.value = e.target.value.replace(restrictRegex, "");
+    
+    // Clear previous custom message
+    input.setCustomValidity("");
+
+    // If input doesn't match full pattern, set custom message
+    if (!pattern.test(input.value)) {
+      input.setCustomValidity(message);
+    }
   });
 }
 
-restrictInputTo("#cvv-input", /\D/g);               // digits only
-restrictInputTo("#card-number-input", /[^\d\s]/g); // digits + spaces
-restrictInputTo("#name-input", /[^a-zA-Z\s]/g);   // letters + spaces
+setupInputValidation(
+  "#cvv-input",
+  /\D/g,          // restrict: remove non-digits
+  /^\d{3}$/,      // full pattern: exactly 3 digits
+  "CVV must be exactly 3 digits"
+);
+
+setupInputValidation(
+  "#card-number-input",
+  /[^\d\s]/g,             // restrict: allow only digits and spaces
+  /^[0-9\s]{13,19}$/,     // full pattern
+  "Card number must be 13-19 digits"
+);
+
+setupInputValidation(
+  "#name-input",
+  /[^a-zA-Z\s]/g,         // restrict: letters + spaces
+  /^[a-zA-Z\s]+$/,        // full pattern
+  "Name can only contain letters and spaces"
+);

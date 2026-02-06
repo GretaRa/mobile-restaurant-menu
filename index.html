@@ -12,9 +12,7 @@
         </header>
         <main>
             <div id="menu"></div>
-            <div id="order-summary" class="hidden">
-        
-            </div>
+            <div id="order-summary" class="hidden"></div>
         </main>
         <div id="payment-modal" class="modal hidden">
             <div id="payment-modal-inner" class="modal-inner">
@@ -23,7 +21,7 @@
                     <input type="text" placeholder="Enter your name" id="name-input" class="payment-input" required>
                     <input type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" maxlength="19" placeholder="Enter card number" name="card-number" id="card-number-input" class="payment-input" required>
                     <input type="tel" inputmode="numeric" pattern="[0-9]{3}" maxlength="3" placeholder="Enter CVV" name="cvv" id="cvv-input" class="payment-input" required>
-                    <button type="submit" class="submit-btn">Pay</button>
+                    <button type="submit" class="submit-btn pay">Pay</button>
                 </form>
             </div>
         </div>
