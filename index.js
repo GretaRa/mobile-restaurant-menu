@@ -61,13 +61,15 @@ function removeItem (selectedItemId){
 function renderShoppingCart (cart) {
   const orderSummaryEl = document.getElementById('order-summary')
 
-  if(shoppingCart.length > 0){
-    orderSummaryEl.style.display = 'block'
-  } else{
-    orderSummaryEl.style.display = 'none'
-  }
+  const cartTotal = cart.reduce((acc, obj) => { return acc + obj.price; }, 0);
 
   let cartHtml = ``
+
+  if(shoppingCart.length > 0){
+    orderSummaryEl.classList.remove('hidden')
+  } else{
+    orderSummaryEl.classList.add('hidden')
+  }
 
   cart.map((item) => {
     cartHtml += `
@@ -81,7 +83,17 @@ function renderShoppingCart (cart) {
     `
   })
 
-  document.getElementById('summary-item-list').innerHTML = cartHtml
+  orderSummaryEl.innerHTML = `
+    <h2 id="summary-title">Your order</h2>
+    <ul id="summary-item-list">
+        ${cartHtml}
+    </ul>
+    <div id="summary-total">
+        <h3>Total price:</h3>
+        <p class="price">$${cartTotal}</p>
+    </div>
+    <button id="submit-order" class="submit-btn" type="submit">Complete order</button>
+  `
 }
 
 // Restrict card form input
