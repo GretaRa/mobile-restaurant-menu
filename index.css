@@ -8,7 +8,6 @@ body {
 } 
 
 h1{
-    font-size: 4em;
     font-weight: 400;
 }
 
@@ -47,6 +46,7 @@ main{
     padding-top: 46px;
     padding-left: 46px;
     margin-bottom: 0;
+    font-size: 4em;
 }
 
 #header-description{
@@ -131,4 +131,44 @@ main{
     font-weight: bold;
     padding: 20px;
     margin-top: 30px;
+}
+
+/* Modal */
+
+.modal{
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-inner{
+    text-align: center;
+    width: 70%;
+    max-width: 600px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.modal-inner h1{
+    font-size: 2.5em;
+}
+
+.card-form{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.payment-input{
+    padding: 10px;
+}
+
+.hidden{
+    display: none;
 }

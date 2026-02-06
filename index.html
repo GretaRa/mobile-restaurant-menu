@@ -24,6 +24,17 @@
                 <button id="submit-order" class="submit-btn" type="submit">Complete order</button>
             </div>
         </main>
+        <div id="payment-modal" class="modal">
+            <div id="payment-modal-inner" class="modal-inner">
+                <h1>Enter card details</h1>
+                <form id="payment-form" class="card-form">
+                    <input type="text" placeholder="Enter your name" id="name-input" class="payment-input" required>
+                    <input type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" maxlength="19" placeholder="Enter card number" name="card-number" id="card-number-input" class="payment-input" required>
+                    <input type="tel" inputmode="numeric" pattern="[0-9]{3}" maxlength="3" placeholder="Enter CVV" name="cvv" id="cvv-input" class="payment-input" required>
+                    <button type="submit" class="submit-btn">Pay</button>
+                </form>
+            </div>
+        </div>
 	<script src="index.js" type="module"></script>
     </body>
 </html>

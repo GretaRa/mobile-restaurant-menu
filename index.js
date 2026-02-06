@@ -83,3 +83,18 @@ function renderShoppingCart (cart) {
 
   document.getElementById('summary-item-list').innerHTML = cartHtml
 }
+
+// Restrict card form input
+
+function restrictInputTo(inputSelector, regex) {
+  const input = document.querySelector(inputSelector);
+  if (!input) return;
+  
+  input.addEventListener("input", (e) => {
+    e.target.value = e.target.value.replace(regex, "");
+  });
+}
+
+restrictInputTo("#cvv-input", /\D/g);               // digits only
+restrictInputTo("#card-number-input", /[^\d\s]/g); // digits + spaces
+restrictInputTo("#name-input", /[^a-zA-Z\s]/g);   // letters + spaces
