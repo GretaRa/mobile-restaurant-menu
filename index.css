@@ -188,3 +188,20 @@ main{
 .hidden{
     display: none;
 }
+
+@media(min-width: 1024px){
+    body{
+        background-color: #fff9f1;
+    }
+    .container{
+        background-color: white;
+        max-width: 900px;
+        margin: 0 auto;
+        border: 1px solid #00000033;
+        box-shadow: 0 4px 8px 0 #00000033, 0 6px 20px 0 #00000030;
+    }
+    header h1 {
+        margin-top: 0;
+    }
+
+}
