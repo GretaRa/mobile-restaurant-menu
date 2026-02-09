@@ -107,7 +107,7 @@ function renderShoppingCart (cart) {
   })
 
   orderSummaryEl.innerHTML = `
-    <h2 id="summary-title">Your order</h2>
+    <h3 id="summary-title">Your order</h3>
     <ul id="summary-item-list">
         ${cartHtml}
     </ul>
