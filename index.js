@@ -1,8 +1,10 @@
 import { menuArray } from "./data.js";
 
+const mainSection = document.getElementById('main-section')
 const menuEl = document.getElementById('menu')
 const paymentModalEl = document.getElementById("payment-modal")
 const paymentForm = document.getElementById("payment-form")
+const successMessage = document.getElementById('success-message')
 
 let shoppingCart = []
 
@@ -10,7 +12,9 @@ document.addEventListener('click', function(e){
   if(e.target.classList.contains("add-btn")){
     const id = Number(e.target.dataset.id)
     addToCart(id)
-    
+    if(!successMessage.classList.contains('hidden')){
+    successMessage.classList.add('hidden')
+    }
   } 
   if (e.target.classList.contains("remove-btn")){
     const id = Number(e.target.dataset.id)
@@ -20,7 +24,17 @@ document.addEventListener('click', function(e){
     paymentModalEl.classList.remove("hidden")
   }
   if(e.target.classList.contains("pay")){
-    paymentForm.checkValidity() ? paymentModalEl.classList.add("hidden") : paymentForm.reportValidity()
+    if (!paymentForm.checkValidity()){
+      paymentForm.reportValidity()
+      return
+    }
+    e.preventDefault()
+    paymentModalEl.classList.add("hidden")
+    shoppingCart = []
+    renderShoppingCart(shoppingCart)
+
+    const name = document.getElementById("name-input").value;
+    displaySuccessMessage(name)
   }
 })
 
@@ -103,6 +117,12 @@ function renderShoppingCart (cart) {
     </div>
     <button id="submit-order" class="submit-btn checkout" type="submit">Complete order</button>
   `
+}
+
+function displaySuccessMessage (name){
+  successMessage.classList.remove('hidden')
+
+  document.getElementById('success-message-text').textContent = `Thanks, ${name}! Your order is on its way!`
 }
 
 // Validate card form input

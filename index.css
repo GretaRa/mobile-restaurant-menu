@@ -38,6 +38,7 @@ header{
     height: 270px;
     color: white;
 }
+
 main{
     margin: 50px;
 }
@@ -58,8 +59,7 @@ main{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
-    padding: 20px 0;
+    padding: 40px 0;
     border-bottom: 1px solid #D2D2D2;
 }
 
@@ -88,7 +88,7 @@ main{
     width: 70px;
     height: 70px;
     font-family: "Inter", system-ui;
-    font-size: 32px;
+    font-size: 2em;
     font-weight: 200;
 }
 
@@ -127,6 +127,15 @@ main{
     font-weight: bold;
     padding: 20px;
     margin-top: 30px;
+}
+
+#success-message{
+    margin: 50px 0;
+    text-align: center;
+    font-size: 2em;
+    padding: 20px;
+    background-color: #ECFDF5;
+    color: #065F46;
 }
 
 /* Modal */
